@@ -1,8 +1,16 @@
+import WelcomeMessage from './components/WelcomeMessage';
 import Header from './components/Header';
 import MainContent from './components/MainContent';
 import Footer from './components/Footer';
 import UserProfile from './components/UserProfile';
 
+export default function App() {
+  return (
+    <div style={{ padding: "2rem", fontFamily: "Arial, sans-serif" }}>
+      <WelcomeMessage />
+    </div>
+  );
+}
 
 export default function App() {
   return (
