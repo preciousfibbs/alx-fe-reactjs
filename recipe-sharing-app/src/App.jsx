@@ -1,9 +1,11 @@
 // src/App.jsx
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import RecipeList from './components/RecipeList';
+import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-router-dom';
 import AddRecipeForm from './components/AddRecipeForm';
+import RecipeList from './components/RecipeList';
 import RecipeDetails from './components/RecipeDetails';
-import { useParams } from 'react-router-dom';
+import EditRecipeForm from './components/EditRecipeForm';
+import SearchBar from './components/SearchBar';
+import { useRecipeStore } from './components/recipeStore';
 
 function App() {
   return (
@@ -17,11 +19,13 @@ function App() {
           element={
             <>
               <AddRecipeForm />
+              <SearchBar /> {/* ✅ Added search bar */}
               <RecipeList />
             </>
           }
         />
         <Route path="/recipes/:id" element={<RecipeDetailsWrapper />} />
+        <Route path="/recipes/:id/edit" element={<EditRecipeWrapper />} />
       </Routes>
     </Router>
   );
@@ -30,6 +34,12 @@ function App() {
 const RecipeDetailsWrapper = () => {
   const { id } = useParams();
   return <RecipeDetails recipeId={Number(id)} />;
+};
+
+const EditRecipeWrapper = () => {
+  const { id } = useParams();
+  const recipe = useRecipeStore((state) => state.recipes.find((r) => r.id === Number(id)));
+  return <EditRecipeForm recipe={recipe} />;
 };
 
 export default App;

@@ -3,16 +3,18 @@ import { Link } from 'react-router-dom';
 import { useRecipeStore } from './recipeStore';
 
 const RecipeList = () => {
-  const recipes = useRecipeStore((state) => state.recipes);
+  const filteredRecipes = useRecipeStore((state) =>
+    state.searchTerm ? state.filteredRecipes : state.recipes
+  );
   const deleteRecipe = useRecipeStore((state) => state.deleteRecipe);
 
-  if (!recipes || recipes.length === 0) {
-    return <p>No recipes yet. Add one above!</p>;
+  if (!filteredRecipes || filteredRecipes.length === 0) {
+    return <p>No recipes found.</p>;
   }
 
   return (
     <div>
-      {recipes.map((recipe) => (
+      {filteredRecipes.map((recipe) => (
         <div
           key={recipe.id}
           style={{ border: '1px solid #ccc', margin: '10px', padding: '10px' }}
