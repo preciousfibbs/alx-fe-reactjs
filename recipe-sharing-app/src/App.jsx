@@ -5,6 +5,8 @@ import RecipeList from './components/RecipeList';
 import RecipeDetails from './components/RecipeDetails';
 import EditRecipeForm from './components/EditRecipeForm';
 import SearchBar from './components/SearchBar';
+import FavoritesList from './components/Favoriteslist';
+import RecommendationsList from './components/RecommendationsList';
 import { useRecipeStore } from './components/recipeStore';
 
 function App() {
@@ -19,8 +21,10 @@ function App() {
           element={
             <>
               <AddRecipeForm />
-              <SearchBar /> {/* ✅ Added search bar */}
+              <SearchBar />
               <RecipeList />
+              <FavoritesList />
+              <RecommendationsList />
             </>
           }
         />
@@ -38,7 +42,9 @@ const RecipeDetailsWrapper = () => {
 
 const EditRecipeWrapper = () => {
   const { id } = useParams();
-  const recipe = useRecipeStore((state) => state.recipes.find((r) => r.id === Number(id)));
+  const recipe = useRecipeStore((state) =>
+    state.recipes.find((r) => r.id === Number(id))
+  );
   return <EditRecipeForm recipe={recipe} />;
 };
 
