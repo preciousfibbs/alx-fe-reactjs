@@ -7,9 +7,9 @@ const RecipeList = () => {
   const recipes = useRecipeStore((state) =>
     state.searchTerm ? state.filteredRecipes : state.recipes
   );
-  const addFavorite = useRecipeStore((state) => state.addFavorite);
-  const removeFavorite = useRecipeStore((state) => state.removeFavorite);
-  const favorites = useRecipeStore((state) => state.favorites);
+  const addFavourite = useRecipeStore((state) => state.addFavourite);
+  const removeFavourite = useRecipeStore((state) => state.removeFavourite);
+  const favourites = useRecipeStore((state) => state.favourites);
 
   if (!recipes || recipes.length === 0) return <p>No recipes found.</p>;
 
@@ -29,10 +29,10 @@ const RecipeList = () => {
               Edit
             </Link>
             <DeleteRecipeButton recipeId={recipe.id} />
-            {favorites.includes(recipe.id) ? (
-              <button onClick={() => removeFavorite(recipe.id)}>Remove Favorite</button>
+            {favourites.includes(recipe.id) ? (
+              <button onClick={() => removeFavourite(recipe.id)}>Remove Favourite</button>
             ) : (
-              <button onClick={() => addFavorite(recipe.id)}>Add Favorite</button>
+              <button onClick={() => addFavourite(recipe.id)}>Add Favourite</button>
             )}
           </div>
         </div>
