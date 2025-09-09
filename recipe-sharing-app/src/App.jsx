@@ -5,7 +5,7 @@ import RecipeList from './components/RecipeList';
 import RecipeDetails from './components/RecipeDetails';
 import EditRecipeForm from './components/EditRecipeForm';
 import SearchBar from './components/SearchBar';
-import FavouritesList from './components/Favouriteslist';
+import FavoritesList from './components/Favoriteslist';
 import RecommendationList from './components/RecommendationList';
 import { useRecipeStore } from './components/recipeStore';
 
@@ -23,7 +23,7 @@ function App() {
               <AddRecipeForm />
               <SearchBar />
               <RecipeList />
-              <FavouritesList />
+              <FavoritesList />
               <RecommendationList />
             </>
           }
